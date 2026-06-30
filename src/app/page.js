@@ -1,95 +1,96 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
 
-export default function Home() {
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+
+export default function LoginPage() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError('');
+
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username, password })
+      });
+      const data = await res.json();
+
+      if (res.ok) {
+        if (!data.user.isPasswordChanged) {
+          router.push('/dashboard/change-password');
+        } else {
+          if (data.user.role === 'KOLEKTOR') {
+            router.push('/dashboard/kolektor');
+          } else if (data.user.role === 'KECAMATAN') {
+            router.push('/dashboard/kecamatan');
+          } else {
+            router.push('/dashboard/verifikator');
+          }
+        }
+      } else {
+        setError(data.error || 'Login failed');
+      }
+    } catch (err) {
+      setError('Something went wrong');
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+    <div className="auth-container animate-fade-in">
+      <div className="auth-card glass-card">
+        <h1 className="auth-title">PENDATAAN NILAI WAJAR</h1>
+        <p className="auth-subtitle">BAPENDA KABUPATEN PURWAKARTA</p>
+        
+        {error && <div style={{ color: 'var(--danger)', marginBottom: '1rem', fontSize: '0.875rem' }}>{error}</div>}
+
+        <form onSubmit={handleLogin}>
+          <div className="form-group">
+            <label>Username</label>
+            <input 
+              type="text" 
+              className="input-field" 
+              value={username} 
+              onChange={e => setUsername(e.target.value)} 
+              required 
+              placeholder="Masukkan username"
             />
-          </a>
-        </div>
+          </div>
+          <div className="form-group">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.5rem' }}>
+              <label style={{ marginBottom: 0 }}>Password</label>
+              <a 
+                href="https://wa.me/628515123059?text=Halo%20Admin,%20saya%20lupa%20password%20akun%20Aplikasi%20Nilai%20Wajar%20saya.%20Mohon%20bantuannya%20untuk%20reset%20password." 
+                target="_blank" 
+                rel="noopener noreferrer"
+                style={{ fontSize: '0.85rem', color: 'var(--primary)', textDecoration: 'none', fontWeight: '500' }}
+              >
+                Lupa password?
+              </a>
+            </div>
+            <input 
+              type="password" 
+              className="input-field" 
+              value={password} 
+              onChange={e => setPassword(e.target.value)} 
+              required 
+              placeholder="Masukkan password"
+            />
+          </div>
+            <button type="submit" disabled={loading} className="btn btn-auth" style={{ width: '100%', marginTop: '1rem' }}>
+              {loading ? 'Authenticating...' : 'Sign In'}
+            </button>
+        </form>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+    </div>
   );
 }

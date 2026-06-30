@@ -1,0 +1,68 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id                String   @id @default(cuid())
+  username          String   @unique
+  password          String
+  role              String   // SUPERADMIN, VERIFIKATOR, KOLEKTOR
+  isPasswordChanged Boolean  @default(false)
+  lastLoginAt       DateTime?
+  villageId         String?
+  village           Village? @relation(fields: [villageId], references: [id])
+  districtId        String?
+  district          District? @relation(fields: [districtId], references: [id])
+}
+
+model District {
+  id       String    @id @default(cuid())
+  name     String
+  villages Village[]
+  users    User[]
+}
+
+model Village {
+  id         String   @id @default(cuid())
+  name       String
+  districtId String
+  district   District @relation(fields: [districtId], references: [id])
+  users      User[]
+  taxObjects TaxObject[]
+}
+
+model TaxObjectCategory {
+  id         String      @id @default(cuid())
+  name       String      // e.g., JL PROTOKOL, JL EKONOMI
+  taxObjects TaxObject[]
+}
+
+model TaxObject {
+  id                 String             @id @default(cuid())
+  address            String
+  zntCode            String?
+  blok               String?
+  isDeleted          Boolean            @default(false)
+  categoryId         String
+  category           TaxObjectCategory  @relation(fields: [categoryId], references: [id])
+  villageId          String
+  village            Village            @relation(fields: [villageId], references: [id])
+  marketValueRecords MarketValueRecord[]
+}
+
+model MarketValueRecord {
+  id          String    @id @default(cuid())
+  taxObjectId String    @unique
+  taxObject   TaxObject @relation(fields: [taxObjectId], references: [id])
+  minValue    Float?
+  maxValue    Float?
+  status      String    @default("PENDING") // PENDING, SUBMITTED, VERIFIED, REJECTED
+  notes       String?
+  updatedAt   DateTime  @updatedAt
+}
