@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { PrismaClient } from '@prisma/client';
-import { getSession } from '@/lib/auth';
+import { getSession } from '../../../lib/auth';
 import * as xlsx from 'xlsx';
 
 const prisma = new PrismaClient();
