@@ -227,7 +227,7 @@ export default function VerifikatorDashboard() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ids: editObjectData.underlying.map(u => u.taxObjectId),
+          ids: editObjectData.underlying?.map(u => u.taxObjectId) || [],
           address: editObjectData.address,
           zntCode: editObjectData.zntCode,
           blok: editObjectData.blok
@@ -257,7 +257,7 @@ export default function VerifikatorDashboard() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          ids: obj.underlying.map(u => u.taxObjectId)
+          ids: obj.underlying?.map(u => u.taxObjectId) || []
         })
       });
 
@@ -664,7 +664,7 @@ export default function VerifikatorDashboard() {
                                       className="btn btn-secondary" 
                                       style={{ padding: '0.4rem 0.75rem', fontSize: '0.8rem', whiteSpace: 'nowrap' }}
                                       onClick={() => setEditObjectData(obj)}
-                                      disabled={obj.record.status === 'VERIFIED' || obj.record.status === 'REJECTED'}
+                                      disabled={obj.record?.status === 'VERIFIED'}
                                     >
                                       Edit
                                     </button>
@@ -673,7 +673,7 @@ export default function VerifikatorDashboard() {
                                       style={{ padding: '0.4rem 0.5rem', fontSize: '0.8rem', color: '#dc3545', borderColor: '#dc3545' }}
                                       onClick={() => handleDelete(obj)}
                                       title="Hapus Alamat"
-                                      disabled={obj.record.status === 'VERIFIED' || obj.record.status === 'REJECTED'}
+                                      disabled={obj.record?.status === 'VERIFIED'}
                                     >
                                       🗑️
                                     </button>

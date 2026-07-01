@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buku Panduan Lengkap - Aplikasi BPHTB</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #222; max-width: 900px; margin: 0 auto; padding: 30px; background-color: #fafafa; }
+        h1 { color: #1e3a8a; border-bottom: 3px solid #1e3a8a; padding-bottom: 15px; text-align: center; margin-bottom: 10px; }
+        .subtitle { text-align: center; font-style: italic; color: #4b5563; margin-bottom: 40px; font-size: 1.1em; }
+        h2 { color: #ffffff; background-color: #2563eb; padding: 10px 15px; border-radius: 6px; margin-top: 40px; }
+        h3 { color: #1e40af; border-left: 4px solid #3b82f6; padding-left: 10px; margin-top: 25px; }
+        p, li { font-size: 1.05em; color: #374151; }
+        ul, ol { margin-left: 20px; margin-bottom: 20px; }
+        li { margin-bottom: 10px; }
+        strong { color: #111827; }
+        code { background-color: #e5e7eb; padding: 2px 6px; border-radius: 4px; font-family: monospace; color: #b91c1c; }
+        .step-box { background: #ffffff; border: 1px solid #d1d5db; border-radius: 8px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05); }
+        .alert { background-color: #fef3c7; border-left: 5px solid #f59e0b; padding: 15px; margin: 20px 0; border-radius: 4px; }
+        .footer { text-align: center; margin-top: 60px; font-size: 0.9em; color: #9ca3af; border-top: 1px solid #e5e7eb; padding-top: 20px; }
+        
+        /* Print styles */
+        @media print {
+            body { max-width: 100%; padding: 0; background-color: white; }
+            .step-box { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
+            h2 { color: #000; background-color: #e5e7eb; border: 2px solid #000; }
+            @page { margin: 2cm; }
+        }
+    </style>
+</head>
+<body>
+    <h1>BUKU PANDUAN LENGKAP APLIKASI BPHTB</h1>
+    <div class="subtitle">Sistem Tata Cara Pendataan & Verifikasi Nilai Jual Objek Pajak (ZNT/Blok)</div>
+
+    <div class="alert">
+        <strong>PENTING:</strong> Aplikasi ini diakses secara online melalui browser web (Google Chrome, Mozilla Firefox, atau Safari). Pastikan Anda memiliki koneksi internet yang stabil saat menginput data.
+    </div>
+
+    <!-- BAB 1 -->
+    <div class="step-box">
+        <h2>BAB 1: TATA CARA LOGIN KE APLIKASI</h2>
+        <p>Langkah pertama yang harus dilakukan oleh seluruh pengguna (semua peran) adalah masuk ke dalam sistem.</p>
+        <ol>
+            <li>Buka browser internet (disarankan Google Chrome).</li>
+            <li>Ketikkan alamat/link website BPHTB resmi di bilah pencarian URL.</li>
+            <li>Setelah halaman Login terbuka, Anda akan melihat kotak pengisian <strong>Username</strong> dan <strong>Password</strong>.</li>
+            <li>Masukkan Username Anda yang telah diberikan (misal: <code>ciseureuh</code> untuk tingkat desa atau <code>superadmin</code> untuk pusat).</li>
+            <li>Masukkan Password. *(Untuk Kolektor dan Kecamatan yang baru pertama kali masuk, password bawaannya adalah <code>12345678</code>)*.</li>
+            <li>Klik tombol <strong>Masuk</strong>. Jika berhasil, Anda akan otomatis diarahkan ke halaman Dashboard sesuai peran Anda.</li>
+        </ol>
+        <p><em>Fitur Ganti Password:</em> Jika Anda ingin mengamankan akun, klik menu <strong>Ubah Password</strong> di layar Dashboard, masukkan password lama Anda, lalu buat password baru dan klik "Simpan".</p>
+    </div>
+
+    <!-- BAB 2 -->
+    <div class="step-box">
+        <h2>BAB 2: PANDUAN UNTUK KOLEKTOR (TINGKAT DESA/KELURAHAN)</h2>
+        <p>Kolektor bertugas mengumpulkan dan memasukkan data alamat dan harga tanah ke dalam sistem.</p>
+        
+        <h3>A. Menambah Data Baru (Input Data)</h3>
+        <ol>
+            <li>Pada halaman Dashboard Kolektor, temukan kolom pencarian dan tombol <strong>+ Tambah Data</strong> di pojok kanan atas.</li>
+            <li>Klik tombol <strong>+ Tambah Data</strong>. Jendela *pop-up* form isian akan muncul.</li>
+            <li>Isi form dengan lengkap:
+                <ul>
+                    <li><strong>Alamat:</strong> Ketikkan nama jalan/gang/lokasi dengan jelas.</li>
+                    <li><strong>Kategori:</strong> Pilih dari menu drop-down (misal: Perumahan, Komersial, Industri, dll).</li>
+                    <li><strong>Kode ZNT & Blok:</strong> Ketikkan kode Zona Nilai Tanah dan nomor blok.</li>
+                    <li><strong>Nilai Terendah (/m²):</strong> Ketikkan estimasi harga tanah paling rendah di blok tersebut (hanya angka).</li>
+                    <li><strong>Nilai Tertinggi (/m²):</strong> Ketikkan estimasi harga tanah paling tinggi di blok tersebut (hanya angka).</li>
+                </ul>
+            </li>
+            <li>Setelah semua terisi, klik tombol hijau <strong>Simpan</strong>. Data akan otomatis masuk ke tabel di layar Anda dengan status "Belum Diverifikasi".</li>
+        </ol>
+
+        <h3>B. Mengedit dan Menghapus Data</h3>
+        <p>Selama data belum dikunci oleh pusat, Anda bebas melakukan perbaikan.</p>
+        <ol>
+            <li>Lihat tabel data yang telah Anda masukkan. Di sebelah kanan (kolom Aksi), terdapat tombol biru <strong>Edit (✏️)</strong> dan tombol merah <strong>Hapus (🗑️)</strong>.</li>
+            <li>Jika salah ketik harga, klik tombol <strong>Edit</strong>, perbaiki angkanya di form yang muncul, lalu klik "Simpan Perubahan".</li>
+            <li>Jika alamat tersebut salah total atau ganda, klik tombol <strong>Hapus</strong>. Sistem akan meminta konfirmasi "Apakah Anda yakin ingin menghapus alamat ini?". Klik Yes/Ok.</li>
+        </ol>
+
+        <h3>C. Mengirim Data (Submit)</h3>
+        <ol>
+            <li>Setelah Anda merasa <strong>seluruh data se-desa Anda sudah selesai diinput</strong>, Anda wajib mengirimkannya agar bisa diperiksa oleh Kabupaten.</li>
+            <li>Scroll ke bagian bawah halaman Dashboard, temukan tombol <strong>Kirim ke Verifikator</strong>.</li>
+            <li>Klik tombol tersebut. Peringatan akan muncul: <em>Setelah dikirim, data tidak bisa diubah lagi!</em></li>
+            <li>Jika Anda yakin, tekan OK. Status pengisian desa Anda akan berubah, dan data akan terkunci sementara (hilang fitur Edit/Hapus).</li>
+        </ol>
+    </div>
+
+    <!-- BAB 3 -->
+    <div class="step-box">
+        <h2>BAB 3: PANDUAN UNTUK KECAMATAN (TINGKAT KECAMATAN)</h2>
+        <p>Akun Kecamatan bertindak sebagai pengawas murni. Anda tidak perlu menginput data, melainkan memantau kinerja desa-desa di wilayah Anda.</p>
+        
+        <h3>A. Memantau Progress Desa (View-Only)</h3>
+        <ol>
+            <li>Setelah Login, Anda akan langsung melihat daftar seluruh desa/kelurahan yang masuk ke dalam wilayah Anda.</li>
+            <li>Di sebelah nama desa, terdapat indikator status: <em>"Belum Selesai"</em> atau <em>"Selesai & Menunggu Verifikasi"</em>.</li>
+            <li>Klik panah ke bawah (▼) atau klik baris nama desa tersebut untuk membuka (Expand) rincian tabelnya.</li>
+            <li>Anda dapat membaca seluruh alamat, harga, dan kode ZNT yang telah diinput oleh Kolektor desa tersebut. Anda tidak memiliki tombol Edit/Hapus karena peran ini dikhususkan untuk pemantauan murni.</li>
+        </ol>
+
+        <h3>B. Mengunduh Laporan (Export to Excel)</h3>
+        <ol>
+            <li>Jika Anda butuh laporan fisik atau untuk direkap di komputer Anda, cari tombol hijau <strong>⬇️ Unduh Excel</strong> yang terletak di sebelah nama kecamatan/desa.</li>
+            <li>Klik tombol tersebut, dan komputer Anda akan otomatis mendownload file `.xlsx` yang berisi tabel rapi seluruh data kecamatan Anda.</li>
+        </ol>
+    </div>
+
+    <!-- BAB 4 -->
+    <div class="step-box">
+        <h2>BAB 4: PANDUAN UNTUK VERIFIKATOR (TINGKAT KABUPATEN)</h2>
+        <p>Verifikator memiliki hak untuk meninjau, menyetujui, menolak, atau mengoreksi data yang dikirimkan oleh Kolektor Desa.</p>
+        
+        <h3>A. Meninjau dan Memverifikasi Data</h3>
+        <ol>
+            <li>Di halaman Dashboard, buka nama Kecamatan dan Desa yang berstatus "Menunggu Verifikasi".</li>
+            <li>Periksa satu per satu harga dan alamat yang tertera di tabel.</li>
+            <li>Jika dirasa akurat dan wajar, Anda dapat menekan tombol <strong>Verifikasi Desa Ini</strong> untuk mengesahkan data tersebut secara massal.</li>
+        </ol>
+
+        <h3>B. Memberikan Koreksi / Menolak Data</h3>
+        <ol>
+            <li>Jika ada harga yang dirasa tidak masuk akal (misal: 10 juta/meter di area perdesaan), klik tombol <strong>Tolak / Revisi</strong> (jika ada opsi tersebut) atau gunakan fitur <strong>Catatan (Notes)</strong> di sebelah baris data.</li>
+            <li>Ketikkan pesan (contoh: <em>"Tolong cek ulang harga tertinggi di blok ini, terlalu mahal"</em>) agar Kolektor bisa membacanya dan memperbaikinya.</li>
+            <li><strong>Fitur By-Pass (Edit Langsung):</strong> Untuk efisiensi, Verifikator juga diberikan tombol Edit dan Hapus di sebelahnya. Jika kesalahannya sangat kecil (salah ketik 1 angka), Verifikator bisa langsung mengeklik Edit dan membetulkannya sendiri tanpa harus mengembalikan ke Kolektor.</li>
+        </ol>
+    </div>
+
+    <!-- BAB 5 -->
+    <div class="step-box">
+        <h2>BAB 5: PANDUAN UNTUK SUPERADMIN (TINGKAT BAPENDA / PUSAT)</h2>
+        <p>Superadmin memiliki seluruh kewenangan fitur Kolektor dan Verifikator ditambah fitur Manajemen Sistem dan Audit.</p>
+        
+        <h3>A. Kendali Sistem Keseluruhan</h3>
+        <ol>
+            <li>Anda dapat melihat 17 Kecamatan sekaligus.</li>
+            <li>Anda bisa melakukan verifikasi paksa atau membatalkan data yang sudah terverifikasi (Un-verify).</li>
+            <li><strong>Melihat Data Terhapus (Audit Trail):</strong> Hanya Superadmin yang bisa melihat baris data yang memiliki label merah <strong>(Dihapus)</strong>. Data yang dihapus oleh Kolektor tidak hilang permanen, namun disembunyikan dan hanya muncul di layar Superadmin untuk mencegah kecurangan.</li>
+        </ol>
+
+        <h3>B. Manajemen Pengguna (Accounts)</h3>
+        <ol>
+            <li>Klik menu <strong>Kelola Akun (Accounts)</strong> di navigasi bagian atas.</li>
+            <li><strong>Menambah Akun:</strong> Isi Username baru, ketik Password awal, pilih Role (Kolektor/Kecamatan/Verifikator), dan pilih wilayah tugasnya. Klik Simpan.</li>
+            <li><strong>Mereset Password:</strong> Di daftar pengguna, jika ada Kolektor yang lupa passwordnya, cari namanya, lalu klik tombol kuning <strong>Reset Password</strong>. Passwordnya akan kembali menjadi `12345678`.</li>
+        </ol>
+    </div>
+
+    <div class="footer">
+        Dibuat otomatis oleh Sistem Aplikasi BPHTB &copy; 2026<br>
+        (Untuk mencetak halaman ini menjadi PDF, tekan tombol <strong>Ctrl + P</strong> di keyboard Anda, lalu pilih "Save as PDF")
+    </div>
+</body>
+</html>
